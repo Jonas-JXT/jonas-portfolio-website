@@ -1,6 +1,16 @@
 'use client'
 import { content } from '@/data/content'
 
+function parseGithub(url: string): string {
+  const m = url.match(/github\.com\/([^/?#]+)/)
+  return m ? `github.com/${m[1]}` : url
+}
+
+function parseInstagram(url: string): string {
+  const m = url.match(/instagram\.com\/([^/?#]+)/)
+  return m ? `@${m[1]}` : url
+}
+
 interface AppCard {
   id: string
   title: string
@@ -78,8 +88,18 @@ const APPS: AppCard[] = [
     content: (
       <div className="space-y-3 text-[13px]">
         <ContactRow icon="✉️" label="Email" value={content.contact.email} href={`mailto:${content.contact.email}`} />
-        <ContactRow icon="🐙" label="GitHub" value="github.com/yourusername" href={content.contact.github} />
-        <ContactRow icon="📷" label="Instagram" value="@yourusername" href={content.contact.instagram} />
+        <ContactRow
+                      icon="🐙"
+                      label="GitHub"
+                      value={parseGithub(content.contact.github)}
+                      href={content.contact.github}
+                    />
+                    <ContactRow
+                      icon="📷"
+                      label="Instagram"
+                      value={parseInstagram(content.contact.instagram)}
+                      href={content.contact.instagram}
+                    />
       </div>
     ),
   },
