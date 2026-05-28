@@ -1,26 +1,156 @@
 @import "tailwindcss";
 
+/* Snow Leopard font stack */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-sl: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+  --menubar-h: 22px;
+  --dock-h: 90px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  font-family: var(--font-sl);
+  user-select: none;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ── Boot Screen ─────────────────────────────────── */
+@keyframes bootFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes bootProgress {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+@keyframes bootFadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+.boot-logo {
+  animation: bootFadeIn 0.6s ease-out 0.3s both;
+}
+
+.boot-progress-bar {
+  animation: bootProgress 2.4s ease-in-out 1s both;
+}
+
+.boot-fade-out {
+  animation: bootFadeOut 0.5s ease-in 3.5s both;
+}
+
+/* ── Windows ──────────────────────────────────────── */
+@keyframes windowOpen {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes windowClose {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.85); }
+}
+
+.window-open {
+  animation: windowOpen 0.18s ease-out both;
+}
+
+.window-close {
+  animation: windowClose 0.15s ease-in both;
+}
+
+/* ── Dock ─────────────────────────────────────────── */
+@keyframes dockBounce {
+  0%, 100% { transform: translateY(0) scale(var(--dock-icon-scale, 1)); }
+  35%       { transform: translateY(-22px) scale(var(--dock-icon-scale, 1)); }
+  65%       { transform: translateY(-10px) scale(var(--dock-icon-scale, 1)); }
+}
+
+.dock-bounce {
+  animation: dockBounce 0.55s ease-in-out;
+}
+
+/* ── Scrollbars (Snow Leopard style) ──────────────── */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 4px; }
+::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.25); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.4); }
+
+/* ── Highlight for search results ─────────────────── */
+@keyframes highlightPulse {
+  0%, 100% { background-color: transparent; }
+  30%       { background-color: rgba(102, 153, 255, 0.25); }
+}
+
+.search-highlight {
+  animation: highlightPulse 1.5s ease-in-out;
+  border-radius: 4px;
+}
+
+/* ── Window chrome gradients ──────────────────────── */
+.window-titlebar {
+  background: linear-gradient(
+    to bottom,
+    #d8d8d8 0%,
+    #c0c0c0 45%,
+    #b0b0b0 50%,
+    #c4c4c4 100%
+  );
+}
+
+.window-titlebar-inactive {
+  background: linear-gradient(
+    to bottom,
+    #ebebeb 0%,
+    #d8d8d8 100%
+  );
+}
+
+/* ── Dock glass shelf ─────────────────────────────── */
+.dock-shelf {
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.35) 0%,
+    rgba(255,255,255,0.15) 50%,
+    rgba(0,0,0,0.15) 100%
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-bottom: none;
+}
+
+/* ── Menu bar glass ───────────────────────────────── */
+.menubar-glass {
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.72) 0%,
+    rgba(255,255,255,0.55) 100%
+  );
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+
+/* ── Dropdown menus ───────────────────────────────── */
+.menu-dropdown {
+  background: linear-gradient(
+    to bottom,
+    rgba(235,235,235,0.97) 0%,
+    rgba(220,220,220,0.97) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
 }
