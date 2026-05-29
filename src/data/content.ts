@@ -68,10 +68,10 @@ export const content = {
 
   employment: [
     {
-      company: 'Startup A',
+      company: 'A*STAR Advanced Remanufacturing and Technology Centre (ARTC)',
       role: 'Deep Learning & Software Engineering Intern',
       dates: 'Mar 2023 - May 2024',
-      question: 'Tell me about your role at A*STAR Advanced Remanufacturing and Technology Centre (ARTC)',
+      question: 'Tell me about your accomplishments here at ARTC?',
       responsibilities: [
         'Partnered with Dental Stars to develop an advanced solution for generating dentures and braces through 3D segmentation techniques.',
         'Worked with RossDigital on 3D depth completion for transparent objects.',
@@ -81,10 +81,10 @@ export const content = {
       ],
     },
     {
-      company: 'Startup B',
+      company: 'Singapore Armed Forces (SAF)',
       role: 'Logistic Officer',
       dates: 'Sep 2024 - May 2026',
-      question: 'What did you work on at Singapore Armed Forces?',
+      question: 'Tell me about your accomplishments here at SAF?',
       responsibilities: [
         'Responsible for command and control, daily operations, and soldier welfare',
         'Ensured operational readiness',
